@@ -3,15 +3,19 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "clear && node ./index.js",
+    "start": "npx tsc",
+    "build": "node ./build/index.js",
     "process-argv": "clear && node exercicios/process-argv.js",
     "par-ou-impar": "clear && node exercicios/par-ou-impar.js",
     "pedra-papel-tesoura": "clear && node exercicios/pedra-papel-tesoura.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.5.7",
+    "typescript": "^5.2.2"
+  }
 }
