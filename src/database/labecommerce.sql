@@ -85,4 +85,28 @@ VALUES (
     );
 
 --pegar a tabela de produtos
-SELECT * FROM products
+SELECT * FROM products;
+
+-- criar um novo user
+INSERT INTO users (id, name, email, password)
+VALUES ('p0043', 'Jon Jones', 'jon.jones@gmail.com', '00933445f');
+
+-- criar um novo produto
+INSERT INTO products
+VALUES ('p0057', 'tests', 'teste', 'teste', 'teste');
+
+-- Retornar produtos especificos
+SELECT * FROM products WHERE name LIKE '%gamer%';
+
+
+-- deletar user por ID
+DELETE FROM users WHERE id = 'u001';
+
+
+--deletar produto por ID
+DELETE FROM products WHERE id = 'p001';
+
+-- editar produtos por ID
+UPDATE products
+SET name = 'teste', price = 40.99, description = 'teste', image_url = 'teste'
+WHERE id = 'p001';
