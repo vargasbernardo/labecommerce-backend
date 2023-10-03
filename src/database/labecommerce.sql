@@ -8,12 +8,13 @@ CREATE TABLE
         name TEXT NOT NULL,
         email TEXT UNIQUE NOT NULL,
         password TEXT NOT NULL,
-        created_at TEXT DEFAULT(DATETIME())NOT NULL
+        created_at TEXT DEFAULT(DATETIME()) NOT NULL
     );
 
 -- Populando a tabela de usuarios
 
-INSERT INTO users (id, name, email, password)
+INSERT INTO
+    users (id, name, email, password)
 VALUES (
         'u001',
         'Fulano',
@@ -36,6 +37,7 @@ VALUES (
 SELECT * from users 
 
 -- Deletar tabela de users
+
 DROP TABLE users;
 
 -- Criacao da tabela de produtos
@@ -85,28 +87,86 @@ VALUES (
     );
 
 --pegar a tabela de produtos
+
 SELECT * FROM products;
 
 -- criar um novo user
-INSERT INTO users (id, name, email, password)
-VALUES ('p0043', 'Jon Jones', 'jon.jones@gmail.com', '00933445f');
+
+INSERT INTO
+    users (id, name, email, password)
+VALUES (
+        'p0043',
+        'Jon Jones',
+        'jon.jones@gmail.com',
+        '00933445f'
+    );
 
 -- criar um novo produto
+
 INSERT INTO products
-VALUES ('p0057', 'tests', 'teste', 'teste', 'teste');
+VALUES (
+        'p0057',
+        'tests',
+        'teste',
+        'teste',
+        'teste'
+    );
 
 -- Retornar produtos especificos
+
 SELECT * FROM products WHERE name LIKE '%gamer%';
 
-
 -- deletar user por ID
+
 DELETE FROM users WHERE id = 'u001';
 
-
 --deletar produto por ID
+
 DELETE FROM products WHERE id = 'p001';
 
 -- editar produtos por ID
+
 UPDATE products
-SET name = 'teste', price = 40.99, description = 'teste', image_url = 'teste'
+SET
+    name = 'teste',
+    price = 40.99,
+    description = 'teste',
+    image_url = 'teste'
 WHERE id = 'p001';
+
+-- Criacao da tabela de pedidos
+
+CREATE TABLE
+    purchases (
+        id TEXT PRIMARY KEY UNIQUE NOT NULL,
+        buyer TEXT NOT NULL,
+        total_price REAL NOT NULL,
+        created_at TEXT DEFAULT(DATETIME()) NOT NULL,
+        FOREIGN KEY (buyer) REFERENCES users(id)
+    );
+
+DROP TABLE purchases;
+
+-- popular tabela de pedidos
+
+INSERT INTO
+    purchases (id, buyer, total_price)
+VALUES ('pu001', 'u001', 44.5), ('pu002', 'u003', 32), ('pu003', 'u002', 100.99), ('pu004', 'p0043', 10000);
+
+SELECT * FROM purchases 
+
+--editar pedido
+
+UPDATE purchases SET total_price = 300 WHERE id = 'pu001';
+
+-- consulta com juncao(endpoint de informacoes de uma compra especifica)
+
+SELECT
+    purchases.id,
+    users.id,
+    users.name,
+    users.email,
+    purchases.total_price,
+    purchases.created_at
+FROM purchases
+    INNER JOIN users ON purchases.buyer = users.id;
