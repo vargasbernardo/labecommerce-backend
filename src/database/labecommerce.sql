@@ -95,22 +95,17 @@ SELECT * FROM products;
 INSERT INTO
     users (id, name, email, password)
 VALUES (
+
         'u004',
-        'Jon Jones',
-        'jon.jones@gmail.com',
-        '00933445f'
-    );
+
 
 -- criar um novo produto
 
 INSERT INTO products
 VALUES (
+
         'p006',
-        'tests',
-        'teste',
-        'teste',
-        'teste'
-    );
+
 
 -- Retornar produtos especificos
 
@@ -143,9 +138,10 @@ CREATE TABLE
         total_price REAL NOT NULL,
         created_at TEXT DEFAULT(DATETIME()) NOT NULL,
         FOREIGN KEY (buyer) REFERENCES users(id)
+
         ON UPDATE CASCADE
         ON DELETE CASCADE
-    );
+
 
 DROP TABLE purchases;
 
@@ -153,7 +149,9 @@ DROP TABLE purchases;
 
 INSERT INTO
     purchases (id, buyer, total_price)
+
 VALUES ('pu001', 'u001', 44.5), ('pu002', 'u003', 32), ('pu003', 'u002', 100.99), ('pu004', 'u002', 10000);
+
 
 SELECT * FROM purchases 
 
@@ -171,6 +169,7 @@ SELECT
     purchases.total_price,
     purchases.created_at
 FROM purchases
+
     INNER JOIN users ON purchases.buyer = users.id;
 
 --criacao tabela de relacoes
@@ -197,3 +196,4 @@ VALUES
 SELECT * FROM purchases_products AS pp
 INNER JOIN products AS pr ON pp.product_id = pr.id
 INNER JOIN purchases AS pu ON pp.purchase_id = pu.id;
+
