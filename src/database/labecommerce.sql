@@ -96,7 +96,7 @@ INSERT INTO
     users (id, name, email, password)
 VALUES (
 
-        'u004',
+        'u004',)
 
 
 -- criar um novo produto
@@ -104,7 +104,7 @@ VALUES (
 INSERT INTO products
 VALUES (
 
-        'p006',
+        'p006',)
 
 
 -- Retornar produtos especificos
@@ -141,7 +141,7 @@ CREATE TABLE
 
         ON UPDATE CASCADE
         ON DELETE CASCADE
-
+    )
 
 DROP TABLE purchases;
 
