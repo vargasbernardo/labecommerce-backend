@@ -92,20 +92,15 @@ SELECT * FROM products;
 
 -- criar um novo user
 
-INSERT INTO
-    users (id, name, email, password)
-VALUES (
+INSERT INTO users (id, name, email, password) VALUES ( 
 
-        'u004',)
-
+'u004',) 
 
 -- criar um novo produto
 
-INSERT INTO products
-VALUES (
+INSERT INTO products VALUES ( 
 
-        'p006',)
-
+'p006',) 
 
 -- Retornar produtos especificos
 
@@ -139,19 +134,15 @@ CREATE TABLE
         created_at TEXT DEFAULT(DATETIME()) NOT NULL,
         FOREIGN KEY (buyer) REFERENCES users(id)
 
-        ON UPDATE CASCADE
-        ON DELETE CASCADE
-    )
+ON UPDATE CASCADE ON DELETE CASCADE ) 
 
 DROP TABLE purchases;
 
 -- popular tabela de pedidos
 
-INSERT INTO
-    purchases (id, buyer, total_price)
+INSERT INTO purchases (id, buyer, total_price) 
 
 VALUES ('pu001', 'u001', 44.5), ('pu002', 'u003', 32), ('pu003', 'u002', 100.99), ('pu004', 'u002', 10000);
-
 
 SELECT * FROM purchases 
 
@@ -170,30 +161,40 @@ SELECT
     purchases.created_at
 FROM purchases
 
-    INNER JOIN users ON purchases.buyer = users.id;
+INNER JOIN users ON purchases.buyer = users.id;
 
 --criacao tabela de relacoes
-CREATE TABLE purchases_products (
-    purchase_id TEXT NOT NULL,
-    product_id TEXT NOT NULL,
-    quantity INTEGER NOT NULL,
-    FOREIGN KEY (purchase_id) REFERENCES purchases (id),
-    FOREIGN KEY (product_id) REFERENCES products (id)
-    ON UPDATE CASCADE
-    ON DELETE CASCADE
-);
+
+CREATE TABLE
+    purchases_products (
+        purchase_id TEXT NOT NULL,
+        product_id TEXT NOT NULL,
+        quantity INTEGER NOT NULL,
+        FOREIGN KEY (purchase_id) REFERENCES purchases (id),
+        FOREIGN KEY (product_id) REFERENCES products (id) ON UPDATE CASCADE ON DELETE CASCADE
+    );
 
 DROP TABLE purchases_products;
 
 -- populando tabela purchases_products
+
 INSERT INTO purchases_products
-VALUES 
-    ('pu001', 'p005', 1),
-    ('pu002', 'p002', 1),
-    ('pu003', 'p003', 2);
+VALUES ('pu001', 'p005', 1), ('pu002', 'p002', 1), ('pu003', 'p003', 2);
 
 -- consulta com INNER JOIN
-SELECT * FROM purchases_products AS pp
-INNER JOIN products AS pr ON pp.product_id = pr.id
-INNER JOIN purchases AS pu ON pp.purchase_id = pu.id;
 
+SELECT *
+FROM purchases_products AS pp
+    INNER JOIN products AS pr ON pp.product_id = pr.id
+    INNER JOIN purchases AS pu ON pp.purchase_id = pu.id;
+
+SELECT
+    purchases.id AS purchaseId,
+    purchases.buyer AS buyerId,
+    users.name AS buyerName,
+    users.email AS buyerEmail,
+    purchases.total_price AS totalPrice,
+    purchases.created_at AS createdAt
+FROM purchases
+    INNER JOIN users ON users.id = purchases.buyer
+    
