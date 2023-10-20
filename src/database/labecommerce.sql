@@ -34,7 +34,7 @@ VALUES (
 
 -- ver a tabela
 
-SELECT * from users 
+SELECT * from users;
 
 -- Deletar tabela de users
 
@@ -92,15 +92,15 @@ SELECT * FROM products;
 
 -- criar um novo user
 
-INSERT INTO users (id, name, email, password) VALUES ( 
-
-'u004',) 
+INSERT INTO users (id, name, email, password) 
+VALUES 
+    ( 'u004');
 
 -- criar um novo produto
 
-INSERT INTO products VALUES ( 
-
-'p006',) 
+INSERT INTO products 
+VALUES
+    ('p006',);
 
 -- Retornar produtos especificos
 
@@ -132,19 +132,18 @@ CREATE TABLE
         buyer TEXT NOT NULL,
         total_price REAL NOT NULL,
         created_at TEXT DEFAULT(DATETIME()) NOT NULL,
-        FOREIGN KEY (buyer) REFERENCES users(id)
-
-ON UPDATE CASCADE ON DELETE CASCADE ) 
+        FOREIGN KEY (buyer) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE
+    );
 
 DROP TABLE purchases;
 
 -- popular tabela de pedidos
 
 INSERT INTO purchases (id, buyer, total_price) 
+VALUES 
+    ('pu001', 'u001', 44.5), ('pu002', 'u003', 32), ('pu003', 'u002', 100.99), ('pu004', 'u002', 10000);
 
-VALUES ('pu001', 'u001', 44.5), ('pu002', 'u003', 32), ('pu003', 'u002', 100.99), ('pu004', 'u002', 10000);
-
-SELECT * FROM purchases 
+SELECT * FROM purchases;
 
 --editar pedido
 
@@ -160,7 +159,6 @@ SELECT
     purchases.total_price,
     purchases.created_at
 FROM purchases
-
 INNER JOIN users ON purchases.buyer = users.id;
 
 --criacao tabela de relacoes
@@ -196,5 +194,9 @@ SELECT
     purchases.total_price AS totalPrice,
     purchases.created_at AS createdAt
 FROM purchases
-    INNER JOIN users ON users.id = purchases.buyer
-    
+    INNER JOIN users ON users.id = purchases.buyer;
+
+DROP TABLE purchases_products;
+DROP TABLE purchases;
+DROP TABLE products;
+DROP TABLE users;

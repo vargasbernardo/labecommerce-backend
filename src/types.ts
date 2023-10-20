@@ -12,3 +12,8 @@ export type TProduct = {
   description: string;
   imageUrl: string;
 };
+
+export type TBoughtProduct = {
+  id: string,
+  quantity: number
+}
