@@ -220,14 +220,16 @@ app.post("/purchases", async (req: Request, res: Response): Promise<void> => {
 
     for (let i = 0; i < products.length; i++) {
       const productPrices = [];
-      const [eachProduct]: Array<TProduct> = await db("products").select("price").where("id", products[i].id)
-      if(!eachProduct) {
+      const [eachProduct]: Array<TProduct> = await db("products")
+        .select("price")
+        .where("id", products[i].id);
+      if (!eachProduct) {
         res.statusCode = 404;
-        throw new Error("Produto nao nao encontrado, checar o id do produto comprado")
+        throw new Error(
+          "Produto nao nao encontrado, checar o id do produto comprado"
+        );
       }
-      productPrices.push(
-        eachProduct
-      );
+      productPrices.push(eachProduct);
       totalPrice.push(productPrices.flat()[0].price * products[i].quantity);
     }
 
