@@ -29,7 +29,11 @@ app.get("/users", async (req: Request, res: Response): Promise<void> => {
 
     res.status(200).send(result);
   } catch (error) {
-    console.log(error);
+    if (error instanceof Error) {
+      res.send(error.message);
+    } else {
+      res.send("Erro inesperado");
+    }
   }
 });
 
@@ -55,6 +59,8 @@ app.get("/products", async (req: Request, res: Response): Promise<void> => {
   } catch (error) {
     if (error instanceof Error) {
       res.send(error.message);
+    } else {
+      res.send("Erro inesperado");
     }
   }
 });
@@ -113,6 +119,8 @@ app.post("/users", async (req: Request, res: Response): Promise<void> => {
   } catch (error) {
     if (error instanceof Error) {
       res.send(error.message);
+    } else {
+      res.send("Erro inesperado");
     }
   }
 });
@@ -177,6 +185,8 @@ app.post("/products", async (req: Request, res: Response): Promise<void> => {
   } catch (error) {
     if (error instanceof Error) {
       res.send(error.message);
+    } else {
+      res.send("Erro inesperado");
     }
   }
 });
