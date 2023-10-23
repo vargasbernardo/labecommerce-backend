@@ -7,31 +7,31 @@ Projeto de prática em back-end com a criação de uma API vinculada com uma bas
 
 1. Clone o repositório:
 
-
-git clone https://github.com/seurepositorio/seuprojeto.git
-cd labbercommerce-backend
-
+```bash
+git clone https://github.com/vargasbernardo/labecommerce-backend
+cd labecommerce-backend
+```
 2. Instale as dependências:
-
+```bash
 npm install
-
+```
 3. Configure o banco de dados:
 ### Crie o banco de dados
-
+```bash
 npx knex migrate:latest
-
+```
 ### Se desejar, popule o banco de dados com dados iniciais (seeds)
-
+```bash
 npx knex seed:run
-
+```
 
 ### Uso da API
 
 Para iniciar o servidor, execute o seguinte comando:
 
-
+```bash
 npm run dev
-
+```
 A API estará disponível em http://localhost:3003.
 
 Certifique-se de que o servidor esteja em execução antes de fazer solicitações à API.
@@ -62,7 +62,7 @@ A API permite que você realize uma série de ações, como buscar informações
 
 ## Documentação no Postman
 
-[https://documenter.getpostman.com/view/28314586/2s9YRCXBtT]
+https://documenter.getpostman.com/view/28314586/2s9YRCXBtT
 
 ## Dependências
 
